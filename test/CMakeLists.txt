@@ -17,3 +17,4 @@ endfunction()
 # Test targets — each links ONLY the component(s) it tests
 add_iot_test(test_hal  test_hal_sim.c  hal)
 add_iot_test(test_logger  test_logger.c  logger)
+add_iot_test(test_sensors_drv  test_sensor_drv.c  drivers)

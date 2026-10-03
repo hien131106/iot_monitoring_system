@@ -54,12 +54,20 @@ void logger_log(log_level_t level, const char *p_file, int line,
   va_list args;
   va_start(args, p_fmt);
 
-  (void)vsnprintf(message, sizeof(message), p_fmt, args); // NOLINT(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling)
+  // NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling)
+  (void)vsnprintf(
+      message, sizeof(message), p_fmt,
+      args); 
 
   va_end(args);
 
   const char *p_level_string = logger_level_to_string(level);
-  (void)snprintf(log_line, sizeof(log_line), "[%s] %s:%d (%s): %s\n", p_level_string, p_file, line, p_func, message); // NOLINT(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling)
+
+  // NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling)
+  (void)snprintf(
+      log_line, sizeof(log_line), "[%s] %s:%d (%s): %s\n", p_level_string,
+      p_file, line, p_func,
+      message); 
 
   (void)write(s_log_fd, log_line, strlen(log_line));
 }

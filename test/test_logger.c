@@ -1,9 +1,9 @@
+#include "logger.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 #include <unity.h>
 #include <unity_internals.h>
-#include "logger.h"
 
 /**
  * @brief Reads the contents of the log file into a buffer.
@@ -48,12 +48,16 @@ int32_t main() {
   return UNITY_END();
 }
 
-static void read_log_file(char *p_buffer, size_t buffer_size)
-{
+static void read_log_file(char *p_buffer, size_t buffer_size) {
   FILE *p_file = fopen("test_logger.log", "r");
   size_t bytes_read;
 
   TEST_ASSERT_NOT_NULL(p_file);
+
+  if (NULL == p_file) {
+    return;
+  }
+
 
   bytes_read = fread(p_buffer, 1U, buffer_size - 1U, p_file);
   p_buffer[bytes_read] = '\0';
@@ -63,9 +67,7 @@ static void read_log_file(char *p_buffer, size_t buffer_size)
 
 void setUp() {}
 
-void tearDown() {
-  logger_close();
-}
+void tearDown() { logger_close(); }
 
 void test_logger_filters_below_min_level() {
   char buffer[512] = {0};
@@ -96,8 +98,7 @@ void test_logger_formats_info_message() {
 
   TEST_ASSERT_NOT_NULL(strstr(buffer, "[INFO]"));
   TEST_ASSERT_NOT_NULL(strstr(buffer, "Temperature = 42"));
-  TEST_ASSERT_NOT_NULL(
-      strstr(buffer, "test_logger_formats_info_message"));
+  TEST_ASSERT_NOT_NULL(strstr(buffer, "test_logger_formats_info_message"));
 }
 
 void test_logger_writes_to_file() {

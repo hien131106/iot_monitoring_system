@@ -21,7 +21,8 @@ void test_fsm_idle_to_monitoring(void);
 /** @brief Verify the FSM transitions from MONITORING to ALERT. */
 void test_fsm_monitoring_to_alert(void);
 
-/** @brief Verify acknowledging an alert returns the FSM to the expected state. */
+/** @brief Verify acknowledging an alert returns the FSM to the expected state.
+ */
 void test_fsm_alert_acknowledge(void);
 
 /** @brief Verify resetting the FSM from ERROR restores normal operation. */

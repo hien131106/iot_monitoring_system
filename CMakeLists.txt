@@ -22,6 +22,7 @@ if(CPPCHECK_EXE)
     add_custom_target(cppcheck
         COMMAND ${CPPCHECK_EXE}
             --enable=all --inconclusive --std=c11
+            --inline-suppr
             --suppress=missingIncludeSystem
             --suppress=unusedFunction
             --suppress=*:*/build/_deps/*

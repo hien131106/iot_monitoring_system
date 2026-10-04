@@ -12,22 +12,34 @@
 static sensor_data_t s_sensor_data;
 static uint8_t s_buffer[TELEMETRY_SERIALIZED_SIZE];
 
+/** @brief Set up test fixtures before each test. */
 void setUp(void);
 
+/** @brief Clean up test fixtures after each test. */
 void tearDown(void);
 
+/** @brief Verify serialization and deserialization produce the original data. */
 void test_serialize_deserialize_round_trip(void);
 
+/** @brief Verify a frame with an invalid synchronization byte is rejected. */
 void test_corrupt_sync_byte_rejected(void);
 
+/** @brief Verify a frame with an invalid CRC is rejected. */
 void test_corrupt_crc_rejected(void);
 
+/** @brief Verify serialization is rejected when the output buffer is too small. */
 void test_buffer_too_small_rejected(void);
 
+/** @brief Verify serialization and deserialization reject null pointers. */
 void test_null_pointer_rejected(void);
+
+/** @brief Verify serialization rejects data exceeding the maximum supported size. */
 void test_oversized_data_rejected(void);
 
+/** @brief Verify the CRC-8 XOR calculation produces the expected result. */
 void test_crc8_xor_calculation(void);
+
+/** @brief Verify multi-byte fields are serialized in big-endian byte order. */
 void test_big_endian_serialization(void);
 
 int main(void) {

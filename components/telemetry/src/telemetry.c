@@ -155,7 +155,7 @@ void telemetry_print_hex(const uint8_t *p_buf, uint32_t len) {
   for (uint32_t i = 0U; i < len; ++i) {
     char hex_byte[HEX_BYTE_STRING_SIZE];
 
-    /* NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling) */
+    // NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling)
     (void)snprintf(hex_byte, sizeof(hex_byte), "%02X", (unsigned int)p_buf[i]);
 
     if (i > 0U) {

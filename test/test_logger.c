@@ -58,7 +58,6 @@ static void read_log_file(char *p_buffer, size_t buffer_size) {
     return;
   }
 
-
   bytes_read = fread(p_buffer, 1U, buffer_size - 1U, p_file);
   p_buffer[bytes_read] = '\0';
 

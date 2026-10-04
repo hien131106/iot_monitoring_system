@@ -6,16 +6,44 @@
 #include "sensor_mgr.h"
 #include "temp_drv.h"
 #include "unity.h"
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 #include <unity_internals.h>
 
+/**
+ * @brief Set up the test fixture before each test case.
+ */
 void setUp(void);
+
+/**
+ * @brief Tear down the test fixture after each test case.
+ */
 void tearDown(void);
+
+/**
+ * @brief Verify that the temperature driver initializes successfully.
+ */
 void test_temp_drv_init(void);
+
+/**
+ * @brief Verify that the temperature driver returns a valid reading.
+ */
 void test_temp_drv_read_returns_valid(void);
+
+/**
+ * @brief Verify that the humidity driver initializes successfully.
+ */
 void test_humi_drv_init(void);
+
+/**
+ * @brief Verify that the humidity driver returns a valid reading.
+ */
 void test_humi_drv_read_returns_valid(void);
+
+/**
+ * @brief Verify that the sensor manager reads all supported sensors
+ * successfully.
+ */
 void test_sensor_mgr_read_all(void);
 
 int main(void) {
@@ -104,7 +132,6 @@ void test_humi_drv_init(void) {
     return;
   }
 
-
   status = p_interface->init();
 
   TEST_ASSERT_EQUAL(STATUS_OK, status);
@@ -122,7 +149,6 @@ void test_humi_drv_read_returns_valid(void) {
   if (NULL == p_interface) {
     return;
   }
-
 
   (void)p_interface->init();
 

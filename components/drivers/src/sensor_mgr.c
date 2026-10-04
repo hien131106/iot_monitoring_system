@@ -50,9 +50,7 @@ status_t sensor_mgr_read_all(sensor_data_t *p_data) {
   int16_t sensor_value;
 
   // NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling)
-  REQUIRE(
-      p_data !=
-      NULL); 
+  REQUIRE(p_data != NULL);
 
   p_data->temperature = 0;
   p_data->humidity = 0;

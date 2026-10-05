@@ -76,10 +76,6 @@ void test_config_missing_file_uses_defaults(void) {
 }
 
 void test_config_malformed_line_skipped(void) {
-  const char *config_text = "temp_max=400\n"
-                            "this_is_not_valid\n"
-                            "humi_max=900\n";
-
   FILE *p_file;
   alert_config_t config;
 
@@ -87,8 +83,13 @@ void test_config_malformed_line_skipped(void) {
 
   TEST_ASSERT_NOT_NULL(p_file);
 
-  (void)fputs(config_text, p_file);
-  (void)fclose(p_file);
+  if (p_file != NULL) {
+    const char *config_text = "temp_max=400\n"
+                              "this_is_not_valid\n"
+                              "humi_max=900\n";
+    (void)fputs(config_text, p_file);
+    (void)fclose(p_file);
+  }
 
   TEST_ASSERT_EQUAL(STATUS_OK,
                     config_load(TEST_MALFORMED_CONFIG_FILE, &config));
@@ -102,11 +103,6 @@ void test_config_malformed_line_skipped(void) {
 }
 
 void test_config_out_of_range_clamped(void) {
-  const char *config_text = "temp_max=9999\n"
-                            "temp_min=-9999\n"
-                            "humi_max=9999\n"
-                            "humi_min=-9999\n";
-
   FILE *p_file;
   alert_config_t config;
 
@@ -114,8 +110,14 @@ void test_config_out_of_range_clamped(void) {
 
   TEST_ASSERT_NOT_NULL(p_file);
 
-  (void)fputs(config_text, p_file);
-  (void)fclose(p_file);
+  if (p_file != NULL) {
+    const char *config_text = "temp_max=9999\n"
+                              "temp_min=-9999\n"
+                              "humi_max=9999\n"
+                              "humi_min=-9999\n";
+    (void)fputs(config_text, p_file);
+    (void)fclose(p_file);
+  }
 
   TEST_ASSERT_EQUAL(STATUS_OK, config_load(TEST_CLAMP_CONFIG_FILE, &config));
 

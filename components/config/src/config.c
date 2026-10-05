@@ -194,8 +194,7 @@ status_t config_load(const char *p_file_path, alert_config_t *p_config) {
 
         line_length = 0U;
       } else if (line_length < (CONFIG_LINE_SIZE - 1U)) {
-        line_buffer[line_length] = character;
-        ++line_length;
+        line_buffer[line_length++] = character;
       } else {
         LOG_WARN("%s", "Config line too long, skipping");
 
